@@ -7,61 +7,50 @@ using namespace std;
 #define endl '\n'
 #define ll long long int
 #define pb push_back
+ll n,m;
 vector<ll>v;
-ll n,k;
 bool cheak(ll num)
 {
-    ll c=1,sum=0,i;
-    for(i=1; i<n; i++)
+    ll sum=0,i;
+    for(i=0; i<n; i++)
     {
-        sum+=v[i]-v[i-1];
-        if(sum>=num)
-        {
-            sum=0;
-            c++;
-        }
+        if(v[i]>num)
+            sum+=v[i]-num;
     }
-    if(c>=k)
-        return true;
+    if(sum>=m)
+       return true;
     else
         return false;
 }
-
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-   ll i,t,a,mid,l,r,ans;
-   cin>>t;
-   while(t--)
-   {
-       v.clear();
-       cin>>n>>k;
-       for(i=0; i<n; i++)
-       {
-           cin>>a;
-           v.pb(a);
-       }
-       sort(v.begin(),v.end());
-       l=0;
-       r=v[n-1];
-       while(r>=l)
-       {
-           mid=(l+r)/2;
-           if(cheak(mid))
-           {
-               ans=mid;
-               l=mid+1;
-           }
-           else
+    ll i,ans,mid,b,a,r,l;
+    cin>>n>>m;
+    b=0;
+    for(i=0; i<n; i++)
+    {
+        cin>>a;
+        v.pb(a);
+        if(a>b)
+            b=a;
+    }
+    l=0;
+    r=b;
+    while(r>=l)
+    {
+        mid=(l+r)/2;
+        if(cheak(mid))
+        {
+            ans=mid;
+            l=mid+1;
+        }
+        else
             r=mid-1;
-       }
-       cout<<ans<<endl;
-   }
-
-
-
+    }
+    cout<<ans;
 
     return 0;
 }
