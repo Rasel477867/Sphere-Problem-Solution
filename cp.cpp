@@ -5,44 +5,34 @@ using namespace std;
 #define pb push_back
 #define ps push
 #define pp pop
-multiset<ll>s;
-multiset<ll>:: iterator it;
-multiset<ll>:: iterator it1;
-
+map<string,ll >m;
+map<string,ll >:: iterator it;
+vector<ll>v;
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    ll t,n,a,c,b,i;
-    cin>>t;
-    while(t--)
+    ll n,i,k,a,key,sum;
+    string s;
+    cin>>n>>k;
+    for(i=0; i<n; i++)
     {
-        cin>>n;
-
-        s.clear();
-        for(i=0; i<n; i++)
-        {
-            cin>>a;
-            s.insert(a);
-        }
-        c=0;
-        while(s.size()!=1)
-        {
-            it=s.begin();
-            a=*it;
-            it1=it;
-            it++;
-            b=*it;
-            c+=a+b;
-            s.insert(a+b);
-            s.erase(it1);
-            s.erase(it);
-
-        }
-        cout<<c<<endl;
+        cin>>s>>key;
+        m[s]+=key;
     }
-
+    for(it=m.begin(); it!=m.end(); it++)
+        v.pb(it->second);
+    sort(v.begin(),v.end());
+    reverse(v.begin(),v.end());
+    sum=0;
+    for(i=0; i<v.size(); i++)
+    {
+        if(i==k)
+            break;
+        sum+=v[i];
+    }
+cout<<sum;
 
     return 0;
 }
