@@ -4,7 +4,7 @@
 #include <iostream>
 #include<bits/stdc++.h>
 #define endl '\n'
-#define ll long long int
+#define ll  long long int
 #define pb push_back
 using namespace __gnu_pbds;
 using namespace std;
@@ -14,45 +14,36 @@ typedef tree<long long int, null_type, less_equal<long long int>, rb_tree_tag,
         ordered_multiset;
 ordered_multiset s;
 //ordered_multiset :: iterator it;
-map<ll,ll>m;
-map<ll,ll>:: iterator it;
 vector<ll>v;
+ll bit(ll num)
+{
+    ll c=0;
+    while(num!=0)
+    {
+        num/=2;
+        c++;
+    }
+    return c;
+}
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    ll n,k,a,b,i;
-    cin>>n;
-    for(i=0; i<n; i++)
+    ll n,t,a,b,x,ans=0;
+
+    cin>>t;
+    while(t--)
     {
-        cin>>a;
-        v.pb(a);
-    }
-    cin>>k;
-    ll r=0,l=0;
-    for(i=0; i<n; i++)
-    {
-        a=v[i];
-        r++;
-        m[a]+=1;
-        if(r-l==k)
+        cin>>n;
+        ans=0;
+        while(n>0)
         {
-            it=m.end();
-            it--;
-            cout<<it->first<<" ";
-            a=v[l];
-            m[a]-=1;
-            if(m[a]==0)
-            {
-                m.erase(a);
-            }
-            l++;
+            x=bit(n)-1;
+            ans+=(1<<(x-1))*x+n-(1<<x)+1;
+            n=n-(1<<x);
         }
+        cout<<ans<<endl;
     }
-
-
-    return 0;
-
+  return 0;
 }
-
