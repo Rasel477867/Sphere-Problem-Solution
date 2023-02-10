@@ -19,11 +19,11 @@ ordered_multiset s3;
 const ll mod=1e9+7;
 const ll z=1e6+5;
 ll fact[z];
-const ll N=1e1;
+const ll N=1e7;
  bool sive[N];
  vector<ll>prime;
  vector<ll>v2;
- vector<ll>v1;
+ vector<ll>v;
  set<ll>s1;
  set<ll>s2;
  map<ll,ll >m;
@@ -147,28 +147,36 @@ int main()
        if(sive[i]==true)
            prime.pb(i);
     }
-   fact[0]=1;
 
-   for(i=1; i<z; i++)
-   {
-       fact[i]=(fact[i-1]*i)%mod;
-
-   }
     /*start main funciton*/
 
-    ll n,a,b,c,t,k=1;
-
-    ll ans;
+    ll n,a,b,c,t,num;
     cin>>t;
     while(t--)
     {
-        cin>>a>>b>>c;
-        b=((b+1)*b)/2;
-        c=((c+1)*c)/2;
-        ans=a*b*c;
-        cout<<"Case "<<k<<": "<<ans<<endl;
-        k++;
+        cin>>n;
+        num=n;
+        v.clear();
+        for(i=0; prime[i]*prime[i]<=n; i++)
+        {
+            while(1)
+            {
+                if(num%prime[i]==0)
+                {
+                    v.pb(prime[i]);
+                    num=num/prime[i];
+                }
+                else
+                    break;
+            }
+        }
+        if(num>1)
+            v.pb(num);
+        for(i=0; i<v.size()-1; i++)
+            cout<<v[i]<<" ";
+        cout<<v[i]<<endl;
     }
+
 
 
 
