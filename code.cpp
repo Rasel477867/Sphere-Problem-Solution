@@ -1,4 +1,3 @@
-
 #include <ext/pb_ds/assoc_container.hpp> // Common file
 #include <ext/pb_ds/tree_policy.hpp>
 #include <functional> // for less
@@ -15,7 +14,7 @@ using namespace std;
 typedef tree<long long int, null_type, less_equal<long long int>, rb_tree_tag,
         tree_order_statistics_node_update>
         ordered_multiset;
-ordered_multiset s1;
+ordered_multiset s3;
 //ordered_multiset :: iterator it;
 const ll mod=1e9+7;
 const ll z=1e6+5;
@@ -23,11 +22,36 @@ ll fact[z];
 const ll N=1e1;
  bool sive[N];
  vector<ll>prime;
- vector<ll>v;
- set<ll>s;
- set<ll>:: iterator its;
+ vector<ll>v2;
+ vector<ll>v1;
+ set<ll>s1;
+ set<ll>s2;
  map<ll,ll >m;
  map<ll,ll >:: iterator it;
+ ll digit(ll a)
+ {
+     ll sum1=0;
+     while(a!=0)
+     {
+         sum1+=a%10;
+         a=a/10;
+     }
+     return sum1;
+ }
+ long long int gcd(long long int a,long long int b)
+{
+    long long int c;
+    while(a%b!=0)
+    {
+        c=b;
+        b=a%b;
+        a=c;
+    }
+    return b;
+}
+
+
+
  ll ex(ll a,ll b,ll mod)
 {
     if(b==0)
@@ -130,19 +154,24 @@ int main()
        fact[i]=(fact[i-1]*i)%mod;
 
    }
-   ll n,ans,t;
-   cin>>t;
-   ll k=1;
-   while(t--)
-   {
-       cin>>n;
-       ans=sqrt(n);
-       if(ans*ans==n)
-           cout<<"Case "<<k<<": "<<"Yes"<<endl;
-       else{
-        cout<<"Case "<<k<<": "<<"No"<<endl;
-       }
-       k++;
-   }
-   return 0;
+    /*start main funciton*/
+
+    ll n,a,b,c,t,k=1;
+
+    ll ans;
+    cin>>t;
+    while(t--)
+    {
+        cin>>a>>b>>c;
+        b=((b+1)*b)/2;
+        c=((c+1)*c)/2;
+        ans=a*b*c;
+        cout<<"Case "<<k<<": "<<ans<<endl;
+        k++;
+    }
+
+
+
+
+return 0;
 }
